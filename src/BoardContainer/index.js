@@ -196,4 +196,4 @@ class BoardContainer extends Component {
     }
 }
 
-export default BoardContainer
+export default BoardContainer;
