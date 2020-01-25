@@ -7,7 +7,7 @@ function BoardList(props){
     const boardsList = boards.map((board) => {
 
         return (
-            <Card = key={board.id}>
+            <Card key={board.id}>
                 <Card.Content>
                     <Card.Header>{board.name}</Card.Header>
                     <Card.Description>{board.body}</Card.Description>
