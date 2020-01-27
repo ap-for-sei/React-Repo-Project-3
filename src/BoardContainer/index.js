@@ -175,7 +175,7 @@ class BoardContainer extends Component {
                             <EditBoardModal 
                                 open={this.state.editModalOpen}
                                 updateBoard={this.updateBoard}
-                                boardToEdit={this.boardToEdit}
+                                boardToEdit={this.state.boardToEdit}
                                 closeModal={this.closeEditModal}
                                 handleEditChange={this.handleEditChange}
                             />
