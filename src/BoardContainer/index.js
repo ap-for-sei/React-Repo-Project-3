@@ -52,13 +52,8 @@ class BoardContainer extends Component {
     closeCreateModal = () => {
         this.setState({
             createModalOpen: false
-<<<<<<< HEAD
         }, 
     )}
-=======
-        })
-    }
->>>>>>> 95c8ea52e6f02395424ac62195d985823a1b9335
 
     componentDidMount() {
         this.getBoards()
