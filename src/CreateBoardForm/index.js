@@ -7,8 +7,8 @@ class CreateBoard extends Component {
 
         this.state = {
             name: '',
-            loggedUser: '',
-            body: ''
+            body: '',
+            
         }
     }
 
@@ -21,47 +21,52 @@ class CreateBoard extends Component {
     clearForm = () => {
         this.setState({
             name: '',
-            loggedUser: '',
-            body: ''
+            body: '',
         })
     }
 
-    render () {
+    render() {
         return(
-            <Modal 
-                open={this.props.open} 
-                closeIcon onClose={this.props.closeModal}
-            >
-                <Header>Create Board</Header>
+            <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
+                <Header>Create a message</Header>
                 <Modal.Content>
-                    <Form
+                    <Form 
                         size='large'
                         onSubmit={(e) => this.props.addBoard(e, this.state)}
                     >
                         <Form.Field>
                             <label>Name</label>
-                            <Form.Input 
-                                type="text"  
-                                name="name" 
+                            <Form.Input
+                                type="text"
+                                name="name"
                                 value={this.state.name}
                                 onChange={this.handleChange}
-                            />
+                                />
                         </Form.Field>
+                        {/* <Form.Field>
+                            <label>User</label>
+                            <Form.Input
+                                type="text"
+                                name="user"
+                                value={this.state.user}
+                                onChange={this.handleChange}
+                                />
+                        </Form.Field> */}
                         <Form.Field>
-                            <label>Body</label>
+                            <label>Message</label>
                             <Form.Input 
-                                type="text"  
-                                name="body" 
+                                type="text"
+                                name="body"
                                 value={this.state.body}
                                 onChange={this.handleChange}
-                            />
+                                />                   
                         </Form.Field>
                         <Button type='submit'>Submit</Button>
                     </Form>
                 </Modal.Content>
             </Modal>
         )
-    } 
-}
+    }
+} 
 
 export default CreateBoard;

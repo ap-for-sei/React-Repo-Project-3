@@ -28,7 +28,8 @@ class BoardContainer extends Component {
         e.preventDefault();
 
         try {
-            const createdBoardResponse = await fetch(`${process.env.REACT_APP_APT_URL}/api/v1/boards/`, {
+            console.log(boardFromTheForm)
+            const createdBoardResponse = await fetch(`http://localhost:8000/api/v1/boards/`, {
                 method: 'POST',
                 body: JSON.stringify(boardFromTheForm),
                 headers: {
@@ -52,8 +53,8 @@ class BoardContainer extends Component {
     closeCreateModal = () => {
         this.setState({
             createModalOpen: false
-        })
-    }
+        }, 
+    )}
 
     componentDidMount() {
         this.getBoards()
