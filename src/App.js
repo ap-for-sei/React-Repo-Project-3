@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import LoginRegisterForm from './LoginRegisterForm';
-import BoardContainer from './BoardContainer';
-import Header from './Header';
-import { Router, Switch } from 'react-router-dom';
-import './App.css';
+import React, { Component } from 'react'
+import LoginRegisterForm from './LoginRegisterForm'
+import BoardContainer from './BoardContainer'
+import Header from './Header'
+import { Route, Switch } from 'react-router-dom'
+import './App.css'
 
 const My404 = () => {
   return (
@@ -50,7 +50,6 @@ class App extends Component {
     console.log('Register Failed: ', parsedLogoutResponse)
   }
 }
-
 
   render() {
     return (

@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import CreateBoard from '../CreateBoardForm';
-import BoardList from '../BoardList';
-import EditBoardModal from '../EditBoardModal';
-import { Grid, Button } from 'semantic-ui-react';
+import React, { Component } from 'react'
+import CreateBoard from '../CreateBoardForm'
+import BoardList from '../BoardList'
+import EditBoardModal from '../EditBoardModal'
+import { Grid, Button } from 'semantic-ui-react'
 
 class BoardContainer extends Component {
+
     state = {
         boards: [],
         createModalOpen: false,
         editModalOpen: false,
         boardToEdit: {
             name: '',
-            user: '',
+            loggedUser: '',
             body: '',
             id: '',
         }
@@ -36,10 +37,10 @@ class BoardContainer extends Component {
                 credentials: 'include'
             });
 
-            const parsedResponse = await createdBoardResponse.json();
+            const parsedResponse = await createdBoardResponse.json()
 
             this.setState({
-                dogs: [...this.state.dogs, parsedResponse.data]
+                boards: [...this.state.boards, parsedResponse.data]
             })
 
             this.closeCreateModal()
@@ -49,18 +50,19 @@ class BoardContainer extends Component {
     }
 
     closeCreateModal = () => {
-        this.setState(
-            { createModalOpen: false }
-        });
+        this.setState({
+            createModalOpen: false
+        })
+    }
 
     componentDidMount() {
-        this.getBoards();
+        this.getBoards()
     }
 
     getBoards = async () => {
         try {
-            const boards = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards`, { credentials: 'include' });
-            const parsedBoards = await boards.json();
+            const boards = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards`, { credentials: 'include' })
+            const parsedBoards = await boards.json()
 
             this.setState({
                 boards: parsedBoards.data
@@ -72,6 +74,7 @@ class BoardContainer extends Component {
 
     editBoard = (idOfBoardEdit) => {
         const boardToEdit = this.state.boards.find(board => board.id === idOfBoardEdit)
+
         this.setState({
             editModalOpen: true,
             boardToEdit: {
@@ -84,8 +87,7 @@ class BoardContainer extends Component {
         this.setState({
             boardToEdit: {
                 ...this.state.boardToEdit,
-                [e.target.name]:
-                e.target.value
+                [e.target.name]: e.target.value
             }
         })
     }
@@ -105,8 +107,7 @@ class BoardContainer extends Component {
 
             const updateResponseParsed = await updateResponse.json()
 
-            const newBoardArrayWithUpdate = 
-            this.state.boards.map((board) => {
+            const newBoardArrayWithUpdate = this.state.boards.map((board) => {
                 if (board.id === updateResponseParsed.data.id) {
                     board = updateResponseParsed.data
                 }
@@ -131,64 +132,63 @@ class BoardContainer extends Component {
     }
 
     deleteBoard = async (id) => {
-        const deletedBoardResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${id}`, {
+        const deleteBoardResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${id}`, {
             method: 'DELETE',
             credentials: 'include'
-        });
+        })
 
-        const deleteBoardParsed = await 
-        deleteBoardResponse.json();
+        const deleteBoardParsed = await deleteBoardResponse.json()
 
         this.setState({
-            dogs: this.state.boards.filter((board) => board.id !== id)
+            boards: this.state.boards.filter((board) => board.id !== id)
         })
     }
 
     render() {
         const { loggedIn } = this.props
+
         return (
             <div>
-                { loggedIn 
-                        ?
-                        <Grid 
-                            textAlign='center'
-                            style={{ marginTop: '7em', height: '100%'}}
-                            verticalAlign='top'
-                            stackable
-                        >
-                            <Grid.Row>
-                                <Button onClick={this.createBoard}>Create New Message</Button>
-                            </Grid.Row>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <BoardList
-                                        boards={this.state.boards}
-                                        deleteBoard={this.deleteBoard}
-                                        editBoard={this.editBoard}
-                                    />
-                                </Grid.Column>
-                                <CreateBoard 
-                                    open={this.state.createModalOpen}
-                                    closeModal={this.closeCreateModal}
-                                    addBoard={this.addBoard}
-                                    ref={this.createDogFormRef}
+                { loggedIn ?
+                    <Grid 
+                        textAlign='center'
+                        style={{ marginTop: '7em', height: '100%' }}
+                        verticalAlign='top'
+                        stackable
+                    >
+                        <Grid.Row>
+                            <Button onClick={this.createBoard}>Create New Board</Button>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <BoardList
+                                    boards={this.state.boards}
+                                    deleteBoard={this.deleteBoard}
+                                    editBoard={this.editBoard}
                                 />
-                                <EditBoardModal 
-                                    open={this.state.editModalOpen}
-                                    updateBoard={this.updateBoard}
-                                    dogToEdit={this.closeEditModal}
-                                    handleEditChange={this.handleEditChange}
-                                />
-                            </Grid.Row>
-                        </Grid>
-                        :
-                        <Grid 
-                            textAlign='center'
-                            style={{ marginTop: '7em', heigh: '100%' }}
-                            verticalAlign='top'
-                            stackable
-                        >
-                            You must be logged in to post a message.
+                            </Grid.Column>
+                            <CreateBoard 
+                                open={this.state.createModalOpen}
+                                closeModal={this.closeCreateModal}
+                                addBoard={this.addBoard}
+                            />
+                            <EditBoardModal 
+                                open={this.state.editModalOpen}
+                                updateBoard={this.updateBoard}
+                                boardToEdit={this.boardToEdit}
+                                closeModal={this.closeEditModal}
+                                handleEditChange={this.handleEditChange}
+                            />
+                        </Grid.Row>
+                    </Grid>
+                :
+                <Grid 
+                    textAlign='center'
+                    style={{ marginTop: '7em', height: '100%' }}
+                    verticalAlign='top'
+                    stackable
+                >
+                    You must be logged in to make a board.
                 </Grid>
                 }
             </div>

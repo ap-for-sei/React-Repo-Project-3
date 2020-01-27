@@ -2,13 +2,16 @@ import React from 'react'
 import { Form, Button, Header, Modal } from 'semantic-ui-react'
 
 function EditBoardModal(props) {
+    console.log("props: ", props)
     return (
-        <Modal open={props.open} closeIcon onClose={props.closeModal}>
+        <Modal open={props.open} 
+        closeIcon onClose={props.closeModal}
+        >
             <Header>Edit Board</Header>
             <Modal.Content>
                 <Form
                     size='large'
-                    onSubmit={props.updatedBoard}
+                    onSubmit={props.updateBoard}
                 >
                     <Form.Field>
                         <label>Name</label>
