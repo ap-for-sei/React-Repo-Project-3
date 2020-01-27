@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Grid, Message, Segment } from 'semantic-ui-react'
 
 class LoginRegisterForm extends Component {
-    contructor() {
+    constructor() {
         super()
 
         this.state = {
