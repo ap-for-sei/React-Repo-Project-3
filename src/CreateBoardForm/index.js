@@ -7,9 +7,8 @@ class CreateBoard extends Component {
 
         this.state = {
             name: '',
-            user: '',
             body: '',
-            id: '',
+            
         }
     }
 
@@ -22,7 +21,6 @@ class CreateBoard extends Component {
     clearForm = () => {
         this.setState({
             name: '',
-            user: '',
             body: '',
         })
     }
@@ -45,7 +43,7 @@ class CreateBoard extends Component {
                                 onChange={this.handleChange}
                                 />
                         </Form.Field>
-                        <Form.Field>
+                        {/* <Form.Field>
                             <label>User</label>
                             <Form.Input
                                 type="text"
@@ -53,12 +51,12 @@ class CreateBoard extends Component {
                                 value={this.state.user}
                                 onChange={this.handleChange}
                                 />
-                        </Form.Field>
+                        </Form.Field> */}
                         <Form.Field>
                             <label>Message</label>
                             <Form.Input 
                                 type="text"
-                                name="message"
+                                name="body"
                                 value={this.state.body}
                                 onChange={this.handleChange}
                                 />                   
