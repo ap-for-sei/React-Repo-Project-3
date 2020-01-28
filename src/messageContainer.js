@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import CreateBoard from '../CreateBoardForm'
-import BoardList from '../BoardList'
-import EditBoardModal from '../EditBoardModal'
+import CreateMessage from '../CreateMessageForm'
+import MessageList from '../messageList'
+import EditMessageModal from '../EditMessageModal'
 import { Grid, Button } from 'semantic-ui-react'
 
-class BoardContainer extends Component {
+class messageContainer extends Component {
 
     state = {
-        boards: [],
+        messages: [],
         createModalOpen: false,
         editModalOpen: false,
-        boardToEdit: {
+        messageToEdit: {
             name: '',
             loggedUser: '',
             body: '',
@@ -18,30 +18,30 @@ class BoardContainer extends Component {
         }
     }
 
-    createBoard = () => {
+    createMessage = () => {
         this.setState({
             createModalOpen: true
         })
     }
 
-    addBoard = async (e, boardFromTheForm) => {
+    addmessage = async (e, messageFromTheForm) => {
         e.preventDefault();
 
         try {
-            console.log(boardFromTheForm)
-            const createdBoardResponse = await fetch(`http://localhost:8000/api/v1/boards/`, {
+            console.log(messageFromTheForm)
+            const createdmessageResponse = await fetch(`http://localhost:8000/api/v1/messages/`, {
                 method: 'POST',
-                body: JSON.stringify(boardFromTheForm),
+                body: JSON.stringify(messageFromTheForm),
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include'
             });
 
-            const parsedResponse = await createdBoardResponse.json()
+            const parsedResponse = await createdmessageResponse.json()
 
             this.setState({
-                boards: [...this.state.boards, parsedResponse.data]
+                messages: [...this.state.messages, parsedResponse.data]
             })
 
             this.closeCreateModal()
@@ -57,49 +57,49 @@ class BoardContainer extends Component {
     )}
 
     componentDidMount() {
-        this.getBoards()
+        this.getmessages()
     }
 
-    getBoards = async () => {
+    getmessages = async () => {
         try {
-            const boards = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards`, { credentials: 'include' })
-            const parsedBoards = await boards.json()
+            const messages = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages`, { credentials: 'include' })
+            const parsedmessages = await messages.json()
 
             this.setState({
-                boards: parsedBoards.data
+                messages: parsedmessages.data
             })
         } catch (err) {
             console.log(err);
         }
     } 
-    
-    editBoard = (idOfBoardEdit) => {
-        const boardToEdit = this.state.boards.find(board => board.id === idOfBoardEdit)
+
+    editmessage = (idOfMessageEdit) => {
+        const messageToEdit = this.state.messages.find(message => message.id === idOfMessageEdit)
 
         this.setState({
             editModalOpen: true,
-            boardToEdit: {
-                ...boardToEdit
+            messageToEdit: {
+                ...messageToEdit
             }
         })
     }
 
     handleEditChange = (e) => {
         this.setState({
-            boardToEdit: {
-                ...this.state.boardToEdit,
+            messageToEdit: {
+                ...this.state.messageToEdit,
                 [e.target.name]: e.target.value
             }
         })
     }
 
-    updateBoard = async (e) => {
+    updateMessage = async (e) => {
         e.preventDefault()
 
         try {
-            const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${this.state.boardToEdit.id}`, {
+            const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages/${this.state.messageToEdit.id}`, {
                 method: 'PUT',
-                body: JSON.stringify(this.state.boardToEdit),
+                body: JSON.stringify(this.state.messageToEdit),
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -108,15 +108,15 @@ class BoardContainer extends Component {
 
             const updateResponseParsed = await updateResponse.json()
 
-            const newBoardArrayWithUpdate = this.state.boards.map((board) => {
-                if (board.id === updateResponseParsed.data.id) {
-                    board = updateResponseParsed.data
+            const newmessageArrayWithUpdate = this.state.messages.map((message) => {
+                if (message.id === updateResponseParsed.data.id) {
+                    message = updateResponseParsed.data
                 }
-                return board 
+                return message 
             })
 
             this.setState({
-                boards: newBoardArrayWithUpdate
+                messages: newmessageArrayWithUpdate
             })
 
             this.closeEditModal()
@@ -132,16 +132,16 @@ class BoardContainer extends Component {
         })
     }
 
-    deleteBoard = async (id) => {
-        const deleteBoardResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${id}`, {
+    deleteMessage = async (id) => {
+        const deleteMessageResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages/${id}`, {
             method: 'DELETE',
             credentials: 'include'
         })
 
-        const deleteBoardParsed = await deleteBoardResponse.json()
+        const deleteMessageParsed = await deleteMessageResponse.json()
 
         this.setState({
-            boards: this.state.boards.filter((board) => board.id !== id)
+            messages: this.state.messages.filter((message) => message.id !== id)
         })
     }
 
@@ -158,28 +158,25 @@ class BoardContainer extends Component {
                         stackable
                     >
                         <Grid.Row>
-                            <Button onClick={this.createBoard}>Create New Board</Button>
+                            <Button onClick={this.createMessage}>Create New message</Button>
                         </Grid.Row>
                         <Grid.Row>
-                        <  Grid.Column>
-                                <MessageContainer boardId={this.state.boardToShow} {...props}/>
-                            </Grid.Column>
                             <Grid.Column>
-                                <BoardList
-                                    boards={this.state.boards}
-                                    deleteBoard={this.deleteBoard}
-                                    editBoard={this.editBoard}
+                                <messageList
+                                    messages={this.state.messages}
+                                    deleteMessage={this.deleteMessage}
+                                    editmessage={this.editmessage}
                                 />
                             </Grid.Column>
-                            <CreateBoard 
+                            <CreateMessage 
                                 open={this.state.createModalOpen}
                                 closeModal={this.closeCreateModal}
-                                addBoard={this.addBoard}
+                                addmessage={this.addmessage}
                             />
-                            <EditBoardModal 
+                            <EditmessageModal 
                                 open={this.state.editModalOpen}
-                                updateBoard={this.updateBoard}
-                                boardToEdit={this.state.boardToEdit}
+                                updateMessage={this.updateMessage}
+                                messageToEdit={this.state.messageToEdit}
                                 closeModal={this.closeEditModal}
                                 handleEditChange={this.handleEditChange}
                             />
@@ -192,7 +189,7 @@ class BoardContainer extends Component {
                     verticalAlign='top'
                     stackable
                 >
-                    You must be logged in to make a board.
+                    You must be logged in to make a message. Death from above.
                 </Grid>
                 }
             </div>
@@ -200,4 +197,4 @@ class BoardContainer extends Component {
     }
 }
 
-export default BoardContainer;
+export default messageContainer;
