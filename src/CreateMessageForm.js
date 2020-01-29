@@ -28,7 +28,7 @@ class CreateMessageForm extends Component {
     render() {
         return(
             <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
-                <Header>Create a message</Header>
+                <Header>Create a Message</Header>
                 <Modal.Content>
                     <Form 
                         size='large'
@@ -43,15 +43,6 @@ class CreateMessageForm extends Component {
                                 onChange={this.handleChange}
                                 />
                         </Form.Field>
-                        {/* <Form.Field>
-                            <label>User</label>
-                            <Form.Input
-                                type="text"
-                                name="user"
-                                value={this.state.user}
-                                onChange={this.handleChange}
-                                />
-                        </Form.Field> */}
                         <Form.Field>
                             <label>Message</label>
                             <Form.Input 
