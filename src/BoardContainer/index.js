@@ -63,7 +63,7 @@ class BoardContainer extends Component {
 
     getBoards = async () => {
         try {
-            const boards = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards`, { credentials: 'include' })
+            const boards = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/`, { credentials: 'include' })
             const parsedBoards = await boards.json()
 
             this.setState({

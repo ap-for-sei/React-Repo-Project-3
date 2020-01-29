@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Button, Header, Modal } from 'semantic-ui-react'
 
-function EditMessageModel(props) {
+function EditMessageModal(props) {
     console.log("props: ", props)
     return (
         <Modal open={props.open} 
@@ -31,11 +31,11 @@ function EditMessageModel(props) {
                             onChange={props.handleEditChange}
                         />
                     </Form.Field>
-                    <Button type="submit">Make It So</Button>
+                    <Button type="submit">Submit</Button>
                 </Form>
             </Modal.Content>
         </Modal>
     )
 }
 
-export default EditMessageModel
+export default EditMessageModal

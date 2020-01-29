@@ -28,7 +28,7 @@ class CreateBoard extends Component {
     render() {
         return(
             <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
-                <Header>Create a message</Header>
+                <Header>Create a Board</Header>
                 <Modal.Content>
                     <Form 
                         size='large'

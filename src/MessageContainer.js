@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 import CreateMessage from './CreateMessageForm'
-// import MessageList from '../messageList'
+import MessageList from './MessageList'
 import EditMessageModal from './EditMessageModal'
 import { Grid, Button } from 'semantic-ui-react'
 
 
-class messageContainer extends Component {
+class MessageContainer extends Component {
 
     state = {
         messages: [],
         createModalOpen: false,
         editModalOpen: false,
         messageToEdit: {
-            name: '',
-            loggedUser: '',
             body: '',
-            id: '',
+            id: ''
         }
     }
 
@@ -25,12 +23,12 @@ class messageContainer extends Component {
         })
     }
 
-    addmessage = async (e, messageFromTheForm) => {
+    addMessage = async (e, messageFromTheForm) => {
         e.preventDefault();
 
         try {
             console.log(messageFromTheForm)
-            const createdmessageResponse = await fetch(`http://localhost:8000/api/v1/messages/`, {
+            const createdMessageResponse = await fetch(`http://localhost:8000/api/v1/boards/`, {
                 method: 'POST',
                 body: JSON.stringify(messageFromTheForm),
                 headers: {
@@ -39,7 +37,7 @@ class messageContainer extends Component {
                 credentials: 'include'
             });
 
-            const parsedResponse = await createdmessageResponse.json()
+            const parsedResponse = await createdMessageResponse.json()
 
             this.setState({
                 messages: [...this.state.messages, parsedResponse.data]
@@ -58,23 +56,23 @@ class messageContainer extends Component {
     )}
 
     componentDidMount() {
-        this.getmessages()
+        this.getMessages()
     }
 
-    getmessages = async () => {
+    getMessages = async () => {
         try {
-            const messages = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages`, { credentials: 'include' })
-            const parsedmessages = await messages.json()
+            const messages = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/`, { credentials: 'include' })
+            const parsedMessages = await messages.json()
 
             this.setState({
-                messages: parsedmessages.data
+                messages: parsedMessages.data
             })
         } catch (err) {
             console.log(err);
         }
     } 
 
-    editmessage = (idOfMessageEdit) => {
+    editMessage = (idOfMessageEdit) => {
         const messageToEdit = this.state.messages.find(message => message.id === idOfMessageEdit)
 
         this.setState({
@@ -98,7 +96,7 @@ class messageContainer extends Component {
         e.preventDefault()
 
         try {
-            const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages/${this.state.messageToEdit.id}`, {
+            const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${this.state.messageToEdit.id}`, {
                 method: 'PUT',
                 body: JSON.stringify(this.state.messageToEdit),
                 headers: {
@@ -109,7 +107,7 @@ class messageContainer extends Component {
 
             const updateResponseParsed = await updateResponse.json()
 
-            const newmessageArrayWithUpdate = this.state.messages.map((message) => {
+            const newMessageArrayWithUpdate = this.state.messages.map((message) => {
                 if (message.id === updateResponseParsed.data.id) {
                     message = updateResponseParsed.data
                 }
@@ -117,7 +115,7 @@ class messageContainer extends Component {
             })
 
             this.setState({
-                messages: newmessageArrayWithUpdate
+                messages: newMessageArrayWithUpdate
             })
 
             this.closeEditModal()
@@ -134,7 +132,7 @@ class messageContainer extends Component {
     }
 
     deleteMessage = async (id) => {
-        const deleteMessageResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/messages/${id}`, {
+        const deleteMessageResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/${id}`, {
             method: 'DELETE',
             credentials: 'include'
         })
@@ -154,25 +152,25 @@ class messageContainer extends Component {
                 { loggedIn ?
                     <Grid 
                         textAlign='center'
-                        style={{ marginTop: '7em', height: '100%' }}
+                        style={{ marginTop: '14em', height: '100%' }}
                         verticalAlign='top'
                         stackable
                     >
                         <Grid.Row>
-                            <Button onClick={this.createMessage}>Create New message</Button>
+                            <Button onClick={this.createMessage}>Create New Message</Button>
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column>
-                                <messageList
+                                <MessageList
                                     messages={this.state.messages}
                                     deleteMessage={this.deleteMessage}
-                                    editmessage={this.editmessage}
+                                    editMessage={this.editMessage}
                                 />
                             </Grid.Column>
                             <CreateMessage 
                                 open={this.state.createModalOpen}
                                 closeModal={this.closeCreateModal}
-                                addmessage={this.addmessage}
+                                addMessage={this.addMessage}
                             />
                             <EditMessageModal 
                                 open={this.state.editModalOpen}
@@ -190,7 +188,7 @@ class messageContainer extends Component {
                     verticalAlign='top'
                     stackable
                 >
-                    You must be logged in to make a message. Death from above.
+                    You must be logged in to make a message.
                 </Grid>
                 }
             </div>
@@ -198,4 +196,4 @@ class messageContainer extends Component {
     }
 }
 
-export default messageContainer;
+export default MessageContainer;
