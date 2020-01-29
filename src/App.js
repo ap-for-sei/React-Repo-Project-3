@@ -79,9 +79,21 @@ class App extends Component {
             }
           />
           <Route
+            exact path="/messages"
+            render={(props) => 
+              <MessageContainer {...props}
+              loggedIn={this.state.loggedIn}
+              loggedStatus={this.handledLoggedInStatus}
+              />
+            }
+          />
+
+          <Route
             component={ My404 }
           />
         </Switch>
+        
+
       </main>
     )
   }
