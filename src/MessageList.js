@@ -15,7 +15,7 @@ function MessageList(props) {
                     <Card.Description>{message.loggedUser.username}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button onClick={() => props.deleteMessage(message.id)}>Delete message
+                    <Button onClick={() => props.deleteMessage(message.id)}>Delete
                     </Button>
                     <Button onClick={() => props.editMessage(message.id)}>Edit message
                     </Button>

@@ -152,21 +152,20 @@ class MessageContainer extends Component {
                 { loggedIn ?
                     <Grid 
                         textAlign='center'
-                        style={{ marginTop: '14em', height: '100%' }}
-                        verticalAlign='top'
-                        stackable
+                        style={{ marginTop: '4em', height: '100%' }}
+                        // stackable
                     >
                         <Grid.Row>
                             <Button onClick={this.createMessage}>Create New Message</Button>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column>
+                            <Grid.Row>
                                 <MessageList
                                     messages={this.state.messages}
                                     deleteMessage={this.deleteMessage}
                                     editMessage={this.editMessage}
                                 />
-                            </Grid.Column>
+                            </Grid.Row>
                             <CreateMessage 
                                 open={this.state.createModalOpen}
                                 closeModal={this.closeCreateModal}
