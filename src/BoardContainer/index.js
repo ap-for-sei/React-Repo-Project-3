@@ -3,6 +3,7 @@ import CreateBoard from '../CreateBoardForm'
 import BoardList from '../BoardList'
 import EditBoardModal from '../EditBoardModal'
 import { Grid, Button } from 'semantic-ui-react'
+import MessageContainer from '../MessageContainer'
 
 class BoardContainer extends Component {
 
@@ -162,7 +163,7 @@ class BoardContainer extends Component {
                         </Grid.Row>
                         <Grid.Row>
                         <  Grid.Column>
-                                <MessageContainer boardId={this.state.boardToShow} {...props}/>
+                                <MessageContainer boardId={this.state.boardToShow} {...this.props}/>
                             </Grid.Column>
                             <Grid.Column>
                                 <BoardList
