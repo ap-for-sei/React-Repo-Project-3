@@ -18,7 +18,7 @@ function EditMessageModel(props) {
                         <Form.Input
                             type="text"
                             name="name"
-                            value={props.massageToEdit.name}
+                            value={props.messageToEdit.name}
                             onChange={props.handleEditChange}
                         />
                     </Form.Field>

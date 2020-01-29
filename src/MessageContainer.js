@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import CreateMessage from '../CreateMessageForm'
-import MessageList from '../messageList'
-import EditMessageModal from '../EditMessageModal'
+import CreateMessage from './CreateMessageForm'
+// import MessageList from '../messageList'
+import EditMessageModal from './EditMessageModal'
 import { Grid, Button } from 'semantic-ui-react'
+
 
 class messageContainer extends Component {
 
@@ -173,7 +174,7 @@ class messageContainer extends Component {
                                 closeModal={this.closeCreateModal}
                                 addmessage={this.addmessage}
                             />
-                            <EditmessageModal 
+                            <EditMessageModal 
                                 open={this.state.editModalOpen}
                                 updateMessage={this.updateMessage}
                                 messageToEdit={this.state.messageToEdit}
