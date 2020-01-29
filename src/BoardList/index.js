@@ -12,8 +12,8 @@ function BoardList(props) {
             <Card key={board.id}>
                 <Card.Content>
                     <Card.Header>{board.name}</Card.Header>
-                    <Card.Description>{board.body}</Card.Description>
                     <Card.Description>{board.loggedUser.username}</Card.Description>
+                    <Card.Description>{board.body}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                     <Button onClick={() => props.deleteBoard(board.id)}>Delete Board

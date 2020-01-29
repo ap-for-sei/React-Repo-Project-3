@@ -155,23 +155,20 @@ class BoardContainer extends Component {
                     <Grid 
                         textAlign='center'
                         style={{ marginTop: '7em', height: '100%' }}
-                        verticalAlign='top'
-                        stackable
                     >
                         <Grid.Row>
                             <Button onClick={this.createBoard}>Create New Board</Button>
                         </Grid.Row>
-                        <Grid.Row>
-                        <  Grid.Column>
+                            <Grid.Row>
                                 <MessageContainer boardId={this.state.boardToShow} {...this.props}/>
-                            </Grid.Column>
-                            <Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
                                 <BoardList
                                     boards={this.state.boards}
                                     deleteBoard={this.deleteBoard}
                                     editBoard={this.editBoard}
                                 />
-                            </Grid.Column>
+                            </Grid.Row>
                             <CreateBoard 
                                 open={this.state.createModalOpen}
                                 closeModal={this.closeCreateModal}
@@ -184,14 +181,13 @@ class BoardContainer extends Component {
                                 closeModal={this.closeEditModal}
                                 handleEditChange={this.handleEditChange}
                             />
-                        </Grid.Row>
                     </Grid>
                 :
                 <Grid 
                     textAlign='center'
                     style={{ marginTop: '7em', height: '100%' }}
                     verticalAlign='top'
-                    stackable
+                    
                 >
                     You must be logged in to make a board.
                 </Grid>
