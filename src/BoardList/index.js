@@ -12,19 +12,15 @@ function BoardList(props) {
             <Card key={board.id}>
                 <Image src={board.image} wrapped ui={false} />
                 <Card.Content>
-                    <Card.Header>{board.name}</Card.Header>
-                    <Card.Description>{board.loggedUser.username}</Card.Description>
-                    <Card.Description>{board.body}</Card.Description>
+                    <Card.Header><i className="material-icons">place</i> {board.location}</Card.Header><br/>
+                    <Card.Header><i className="material-icons">info</i> {board.name}</Card.Header><br/>
+                    {/* <Card.Description>{board.loggedUser.username}</Card.Description> */}
+                    <Card.Description><i className="material-icons">message</i> {board.body}</Card.Description><br/>
                 </Card.Content>
-                <Card.Group>
-                    <Card fluid color='red' header='Option 1' />
-                    <Card fluid color='orange' header='Option 2' />
-                    <Card fluid color='yellow' header='Option 3' />
-                </Card.Group>
                 <Card.Content extra>
-                    <Button onClick={() => props.deleteBoard(board.id)}>Delete Board
+                    <Button onClick={() => props.deleteBoard(board.id)}>Delete Post-It
                     </Button>
-                    <Button onClick={() => props.editBoard(board.id)}>Edit Board
+                    <Button onClick={() => props.editBoard(board.id)}>Edit Post-It
                     </Button>
                 </Card.Content>
             </Card>
