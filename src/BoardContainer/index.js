@@ -167,6 +167,7 @@ class BoardContainer extends Component {
                                     boards={this.state.boards}
                                     deleteBoard={this.deleteBoard}
                                     editBoard={this.editBoard}
+                                    createMessage={this.createMessage}
                                 />
                             </Grid.Row>
                             <CreateBoard 

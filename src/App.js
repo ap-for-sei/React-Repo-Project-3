@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import LoginRegisterForm from './LoginRegisterForm'
 import BoardContainer from './BoardContainer'
 import Header from './Header'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css'
 import MessageContainer from './MessageContainer'
 
@@ -53,6 +53,7 @@ class App extends Component {
 }
 
   render() {
+
     return (
       <main>
         <Header
@@ -71,7 +72,7 @@ class App extends Component {
             }
           />
           <Route
-            exact path="/boards"
+            exact path="/boards/"
             render={(props) => 
               <BoardContainer {...props}
               loggedIn={this.state.loggedIn}
@@ -80,7 +81,7 @@ class App extends Component {
             }
           />
           <Route
-            exact path="/messages"
+            exact path="/messages/"
             render={(props) => 
               <MessageContainer {...props}
               loggedIn={this.state.loggedIn}
@@ -97,6 +98,56 @@ class App extends Component {
 
       </main>
     )
+    // if (this.state.loggedIn) {
+    //   return (
+    //     <Redirect push to="/boards" />
+    //   )
+    // } else {
+    //   return (
+    //     <main>
+    //       <Header
+    //         loggedIn={this.state.loggedIn}
+    //         loggedInUserEmail={this.state.loggedInUserEmail}
+    //         logout={this.logout}
+    //       />
+    //       <Switch>
+    //         <Route
+    //           exact path="/"
+    //           render={(props) => 
+    //             <LoginRegisterForm {...props}
+    //             loggedIn={this.state.loggedIn}
+    //             loggedStatus={this.handledLoggedInStatus}
+    //             />
+    //           }
+    //         />
+    //         <Route
+    //           exact path="/boards/"
+    //           render={(props) => 
+    //             <BoardContainer {...props}
+    //             loggedIn={this.state.loggedIn}
+    //             loggedStatus={this.handledLoggedInStatus}
+    //             />
+    //           }
+    //         />
+    //         <Route
+    //           exact path="/messages/"
+    //           render={(props) => 
+    //             <MessageContainer {...props}
+    //             loggedIn={this.state.loggedIn}
+    //             loggedStatus={this.handledLoggedInStatus}
+    //             />
+    //           }
+    //         />
+  
+    //         <Route
+    //           component={ My404 }
+    //         />
+    //       </Switch>
+          
+  
+    //     </main>
+    //   )
+    // }
   }
 }
 

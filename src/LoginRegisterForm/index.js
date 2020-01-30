@@ -27,6 +27,7 @@ class LoginRegisterForm extends Component {
 
         if(parsedLoginResponse.status.code === 200) {
             this.props.loggedStatus(parsedLoginResponse.data.email)
+            this.props.history.push('/boards')
         } else {
             console.log('Login Failed: ', parsedLoginResponse)
         }

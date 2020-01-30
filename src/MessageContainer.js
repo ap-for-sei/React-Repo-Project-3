@@ -12,7 +12,9 @@ class MessageContainer extends Component {
         createModalOpen: false,
         editModalOpen: false,
         messageToEdit: {
+            name: '',
             body: '',
+            loggedUser: '',
             id: ''
         }
     }
@@ -183,9 +185,9 @@ class MessageContainer extends Component {
                 :
                 <Grid 
                     textAlign='center'
-                    style={{ marginTop: '7em', height: '100%' }}
-                    verticalAlign='top'
-                    stackable
+                    style={{ marginTop: '4em', height: '100%' }}
+                    // verticalAlign='top'
+                    // stackable
                 >
                     You must be logged in to make a message.
                 </Grid>
