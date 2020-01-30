@@ -4,7 +4,7 @@ import BoardContainer from './BoardContainer'
 import Header from './Header'
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import MessageContainer from './MessageContainer'
+// import MessageContainer from './MessageContainer'
 
 const My404 = () => {
   return (
@@ -79,13 +79,13 @@ class App extends Component {
               />
             }
           />
-          <Route
+          {/* <Route
             exact path="/messages"
             render={(props) => 
               <MessageContainer {...props}
               loggedIn={this.state.loggedIn}
               loggedStatus={this.handledLoggedInStatus}
-              />
+              /> */}
             }
           />
 
