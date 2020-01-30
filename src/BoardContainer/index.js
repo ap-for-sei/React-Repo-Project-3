@@ -11,6 +11,11 @@ class BoardContainer extends Component {
         boards: [],
         createModalOpen: false,
         editModalOpen: false,
+        messageToEdit: {
+            body: '',
+            loggedUser: '',
+            id: ''
+        },
         boardToEdit: {
             name: '',
             loggedUser: '',
@@ -145,6 +150,33 @@ class BoardContainer extends Component {
             boards: this.state.boards.filter((board) => board.id !== id)
         })
     }
+
+    addMessage = async (e, messageFromTheForm) => {
+        e.preventDefault();
+
+        try {
+            console.log(messageFromTheForm)
+            const createdMessageResponse = await fetch(`http://localhost:8000/api/v1/boards/`, {
+                method: 'POST',
+                body: JSON.stringify(messageFromTheForm),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            });
+
+            const parsedResponse = await createdMessageResponse.json()
+
+            this.setState({
+                messages: [...this.state.messages, parsedResponse.data]
+            })
+
+            this.closeCreateModal()
+        } catch (err) {
+            console.log('error: ', err)
+        }
+    }
+    
 
     render() {
         const { loggedIn } = this.props
