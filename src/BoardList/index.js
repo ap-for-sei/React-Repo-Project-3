@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Button } from 'semantic-ui-react'
+import MessageContainer from '../MessageContainer'
+import { Card, Button, Message } from 'semantic-ui-react'
 
 function BoardList(props) {
 
@@ -20,6 +21,7 @@ function BoardList(props) {
                     </Button>
                     <Button onClick={() => props.editBoard(board.id)}>Edit Board
                     </Button>
+                    <Button onClick={() =>  <MessageContainer {...props}/>}>Comment</Button>
                 </Card.Content>
             </Card>
         )

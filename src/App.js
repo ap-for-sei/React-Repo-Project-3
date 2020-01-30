@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import LoginRegisterForm from './LoginRegisterForm'
 import BoardContainer from './BoardContainer'
 import Header from './Header'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, link} from 'react-router-dom'
 import './App.css'
 import MessageContainer from './MessageContainer'
 
@@ -70,6 +70,7 @@ class App extends Component {
               />
             }
           />
+
           <Route
             exact path="/boards"
             render={(props) => 
@@ -79,7 +80,7 @@ class App extends Component {
               />
             }
           />
-          <Route
+          {/* <Route
             exact path="/messages"
             render={(props) => 
               <MessageContainer {...props}
@@ -87,7 +88,7 @@ class App extends Component {
               loggedStatus={this.handledLoggedInStatus}
               />
             }
-          />
+          /> */}
 
           <Route
             component={ My404 }
