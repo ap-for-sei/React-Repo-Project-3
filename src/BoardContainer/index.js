@@ -30,7 +30,7 @@ class BoardContainer extends Component {
 
         try {
             console.log(boardFromTheForm)
-            const createdBoardResponse = await fetch(`http://localhost:8000/api/v1/boards/`, {
+            const createdBoardResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/boards/`, {
                 method: 'POST',
                 body: JSON.stringify(boardFromTheForm),
                 headers: {
