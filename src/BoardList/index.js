@@ -10,7 +10,7 @@ function BoardList(props) {
         return (
 
             <Card key={board.id}>
-                <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} />
+                <Image src={board.image} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header>{board.name}</Card.Header>
                     <Card.Description>{board.loggedUser.username}</Card.Description>

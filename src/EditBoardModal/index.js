@@ -31,6 +31,15 @@ function EditBoardModal(props) {
                             onChange={props.handleEditChange}
                         />
                     </Form.Field>
+                    <Form.Field>
+                            <label>Image</label>
+                            <Form.Input 
+                                type="text"
+                                name="image"
+                                value={props.boardToEdit.image}
+                                onChange={props.handleEditChange}
+                                />                   
+                    </Form.Field>
                     <Button type="submit">Submit</Button>
                 </Form>
             </Modal.Content>

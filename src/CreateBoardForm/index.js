@@ -43,21 +43,21 @@ class CreateBoard extends Component {
                                 onChange={this.handleChange}
                                 />
                         </Form.Field>
-                        {/* <Form.Field>
-                            <label>User</label>
-                            <Form.Input
-                                type="text"
-                                name="user"
-                                value={this.state.user}
-                                onChange={this.handleChange}
-                                />
-                        </Form.Field> */}
                         <Form.Field>
                             <label>Message</label>
                             <Form.Input 
                                 type="text"
                                 name="body"
                                 value={this.state.body}
+                                onChange={this.handleChange}
+                                />                   
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Image</label>
+                            <Form.Input 
+                                type="text"
+                                name="image"
+                                value={this.state.image}
                                 onChange={this.handleChange}
                                 />                   
                         </Form.Field>
