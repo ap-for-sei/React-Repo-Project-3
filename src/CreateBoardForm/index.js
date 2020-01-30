@@ -28,7 +28,7 @@ class CreateBoard extends Component {
     render() {
         return(
             <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
-                <Header>Create a Board</Header>
+                <Header>Create a Post-It</Header>
                 <Modal.Content>
                     <Form 
                         size='large'
@@ -39,6 +39,8 @@ class CreateBoard extends Component {
                             <Form.Input
                                 type="text"
                                 name="name"
+                                fluid icon="font"
+                                iconPosition="left"
                                 value={this.state.name}
                                 onChange={this.handleChange}
                                 />
@@ -48,6 +50,8 @@ class CreateBoard extends Component {
                             <Form.Input 
                                 type="text"
                                 name="body"
+                                fluid icon="file text"
+                                iconPosition="left"
                                 value={this.state.body}
                                 onChange={this.handleChange}
                                 />                   
@@ -56,8 +60,21 @@ class CreateBoard extends Component {
                             <label>Image</label>
                             <Form.Input 
                                 type="text"
+                                fluid icon="picture"
+                                iconPosition="left"
                                 name="image"
                                 value={this.state.image}
+                                onChange={this.handleChange}
+                                />                   
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Location</label>
+                            <Form.Input 
+                                type="text"
+                                name="location"
+                                fluid icon="map marker alternate"
+                                iconPosition="left"
+                                value={this.state.location}
                                 onChange={this.handleChange}
                                 />                   
                         </Form.Field>

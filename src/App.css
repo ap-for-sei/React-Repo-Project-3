@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+body {
+  background: linear-gradient(0.25turn, #666d71, #474946, #6d6b6a);
+}
+
+.material-icons {
+  font-size: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
