@@ -1,2 +1,5 @@
-# React-Repo-Project-3
-Project 3 - React
+Post-Hub is a place to make Post-Its with images, messages and notes.
+
+Register and log in to make posts.
+
+This app was built with React, Python and Flask.
