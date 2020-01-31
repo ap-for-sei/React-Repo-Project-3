@@ -14,7 +14,7 @@ class LoginRegisterForm extends Component {
     }
 
     login = async (loginInfo) => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/login/`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/login`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(loginInfo),
@@ -34,7 +34,7 @@ class LoginRegisterForm extends Component {
     }
 
     register = async (registerInfo) => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/register/`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/register`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(registerInfo),
