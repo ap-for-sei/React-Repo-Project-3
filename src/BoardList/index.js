@@ -14,8 +14,8 @@ function BoardList(props) {
                 <Card.Content>
                     <Card.Header><i className="material-icons">place</i> {board.location}</Card.Header><br/>
                     <Card.Header><i className="material-icons">info</i> {board.name}</Card.Header><br/>
-                    {/* <Card.Description>{board.loggedUser.username}</Card.Description> */}
                     <Card.Description><i className="material-icons">message</i> {board.body}</Card.Description><br/>
+                    <Card.Description><i className="material-icons">person</i> {board.loggedUser.username}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                     <Button onClick={() => props.deleteBoard(board.id)}>Delete Post-It
