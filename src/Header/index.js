@@ -12,11 +12,14 @@ class HeaderComponent extends Component {
             <Header>
                 <Menu fixed='top' inverted>
                     <Container>
+                        { !this.props.loggedIn ?
                         <Menu.Item>
-                            <Link to='/'>Home</Link>
+                            <Link to='/'>Log In</Link>
                         </Menu.Item>
+                        : null    
+                        }
                         <Menu.Item>
-                            <Link to='/boards'>Boards</Link>
+                            <Link to='/boards'>Post-Its</Link>
                         </Menu.Item>
                         { this.props.loggedIn ?
                             <Menu.Item>
